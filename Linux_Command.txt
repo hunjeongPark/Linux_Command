@@ -13,6 +13,9 @@ telnet [ip] [port] => telnet쏘기
 claer => 현재창 비우기
 ps -ef | grep [찾을명] => 현재찾고자 하는 서비스 확인
 sudo su => root권한 변경
+svnserve [svn위치] start => svn 시작
+env => 환경변수 설정 확인
+export [변수명]=[환경변수위치] => 환경변수 설정(console 창에서입력 시 임시, /etc/profile에 등록해줘야 상시)
 
 
 -- docker 관련 명령어
@@ -21,3 +24,17 @@ nvidia-smi => nvidia 모델 확인
 docker logs --tail [몇줄볼건지] [컨테이너명] => 최신부터 정해진 라인 로그확인
 docker stop [컨테이너명]  => 도커 정지
 docker start [컨테이너명]  => 도커 시작
+docker rm [컨테이너명]  => 도커 컨테이너 제거(정지 후)
+
+--docker 이미지 load 및 컨테이너 생성 예시 --
+$ docker load -i naked_meter_200604.tar
+-> Loaded image: agilesoda/naked_meter:200604
+
+$ docker run --gpus '"device=0"' \
+                -p 8080:8080 \
+                --restart always \
+                --name naked_meter \
+                agilesoda/naked_meter:200604
+                
+
+
